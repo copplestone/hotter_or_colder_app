@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Hotter or colder?</title>
+        <link href='bootstrap/dist/css/bootstrap.css' rel='stylesheet'>
+        <link type="text/css" rel="stylesheet" href="bootswatch.css"/>
+        <link rel="stylesheet" href="/css/font-awesome.css">
+        <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+
+
+
+</head>
+
+<body>
+<div class="container marketing">
+    <br><br><br><br><br>
+    <div class="featurette">
+        <div class="row">
+            <img class="featurette-image img-circle pull-right box" data-src="holder.js/270x270" alt="270x270" style="width: 270px;" src="/colder1.jpg">
+        
+        
+            <img class="featurette-image img-circle pull-left box" data-src="holder.js/270x270" alt="270x270" style="width: 270px;" src="/hotter1.jpg">
+        
+        
+        <div class="box">
+            <h1 class="featurette-heading">A weather forecast
+            <span class="text-muted">you can feel.</span></h1>
+            <br>
+            <form method='post' class="form-inline">
+            <div class="box-button">
+                <label>Location</label>
+                <select class="form-control input-lg dropdown" name="location">
+                  <option>Bristol</option>
+                  <option>Cambridge</option>
+                  <option>London</option>
+                </select>
+<br><br>
+                <label>When for?   </label>
+                <select class="form-control input-lg dropdown" name="when_for">
+                  <option>Today</option>
+                  <option>Tomorrow</option>
+                </select>
+
+                <br><br>
+                <button type="button submit" class="btn btn-warning btn-lg dropdown_font main_button">Hotter or colder?</button>
+                               <br><br>
+                <!--<button type="button submit" class="btn btn-info btn-lg">Wetter or dryer?</button>
+                               <br>
+                <button type="button submit" class="btn btn-default btn-lg">Clearer or cloudier?</button>
+                               <br>
+                <button type="button submit" class="btn btn-success btn-lg">Windier or stiller?</button>-->
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <br><br><br><br><br><br><br>
+    <div class="text-center bottom-line">
+<p>Written in <a href="http://www.ruby-lang.org/en/">Ruby</a> using <a href="http://www.sinatrarb.com/">Sinatra</a>, hosted by <a href="https://www.heroku.com/‎">Heroku</a>. Created and maintained by Grace and Archy.</p>
+    </div>
+</div>
+</body>
+</html>

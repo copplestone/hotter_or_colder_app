@@ -1,0 +1,22 @@
+.box {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.dropdown_font {
+    font-size: 18px;
+}
+
+.main_button {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+
+.dropdown{
+    width: 25%;
+}
+
+.bottom-line{
+    padding: 15px 0 10px 10px;
+}

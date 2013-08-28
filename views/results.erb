@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotter or colder</title>
+    <link href='/bootstrap/css/bootstrap.css' rel='stylesheet'>
+    <link type="text/css" rel="stylesheet" href="bootswatch.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.css">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+</head>
+<body>
+    <div class='container marketing'>
+<br><br><br><br><br>
+    <div class="row">
+
+        <img class="featurette-image img-circle pull-right box" data-src="holder.js/270x270" alt="270x270" style="width: 270px;" src="/colder1.jpg">
+
+        <img class="featurette-image img-circle pull-left box" data-src="holder.js/270x270" alt="270x270" style="width: 270px;" src="/hotter1.jpg">
+
+    <div class="featurette">
+    <h2><div class="text-muted featurette-heading">Location - <%= @location.capitalize %></div></h2>
+    <blockquote>
+    <h1 class="featurette-heading"><%=@word_one%> will be <%= @h_or_c %> <%=@word_two%>.</h1>
+    </blockquote>
+</div>
+<h5 class="text-muted">Actual data</h5> 
+<h5 class="text-muted"><%=@word_one%>'s temperatures <%=@temp_tomorrow%></h5> 
+<h5 class="text-muted"><%=@word_two.capitalize%>'s temperatures <%=@temp_today%></h5>
+</div>
+</div>
+</body>
+</html>
