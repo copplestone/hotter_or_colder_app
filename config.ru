@@ -1,2 +1,2 @@
 require './app-mongo.rb'
-run sinatra::Application
+run Sinatra::Application
