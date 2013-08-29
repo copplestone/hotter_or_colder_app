@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'net/http'
-require 'JSON'
+require 'json'
 require 'mongoid'
 require 'date'
 
