@@ -172,6 +172,13 @@ get '/test' do
     erb :results_test
 end
 
+get '/update' do
+    daily_forecast("bristol")
+    daily_forecast("cambridge")
+    daily_forecast("london")
+    puts "Update completed"
+end
+
 post'/' do
     @location = params[:location].downcase
     @when_for = params[:when_for].downcase
