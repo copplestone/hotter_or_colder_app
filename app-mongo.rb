@@ -23,21 +23,21 @@ end
 
 # Models
 
-def update_required(current)
-    url = "http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/capabilities?res=3hourly&key=0da4e1ea-8681-47bc-a5f9-5ab535ff75f2"
-    resp = Net::HTTP.get_response(URI.parse(url))
-    data = resp.body
-    result = JSON.parse(data)
-    most_recent_from_db = "#{WeatherData.first.date[0]}-#{WeatherData.first.date[1]}-#{WeatherData.first.date[2]}"
-    most_recent_from_met = result["Resource"]["dataDate"].chop[0..9]
-    if  most_recent_from_db != most_recent_from_met
-        daily_forecast
-    end
-    #if result.has_key? 'Error'
-    #    raise "web service error"
-    #end
-    return result
-end
+#def update_required(current)
+#    url = "http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/capabilities?res=3hourly&key=0da4e1ea-8681-47bc-a5f9-5ab535ff75f2"
+#    resp = Net::HTTP.get_response(URI.parse(url))
+#    data = resp.body
+#    result = JSON.parse(data)
+#    most_recent_from_db = "#{WeatherData.first.date[0]}-#{WeatherData.first.date[1]}-#{WeatherData.first.date[2]}"
+#    most_recent_from_met = result["Resource"]["dataDate"].chop[0..9]
+#    if  most_recent_from_db != most_recent_from_met
+#        daily_forecast
+#    end
+#    #if result.has_key? 'Error'
+#    #    raise "web service error"
+#    #end
+#    return result
+#end
 
 def location_id
     {   :bristol => 310004,
@@ -47,6 +47,8 @@ end
 
 # Gets the day's data and adds it to the WeatherData class on MongoDB
 # Perhaps need a check to see whether today's data has been fetched or not?
+
+# heroku run irb
 def daily_forecast(location)
     id = location_id[location.downcase.to_sym]
     puts id
@@ -176,7 +178,7 @@ get '/update' do
     daily_forecast("bristol")
     daily_forecast("cambridge")
     daily_forecast("london")
-    puts "Update completed"
+    erb :update_complete
 end
 
 post'/' do
