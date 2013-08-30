@@ -175,10 +175,15 @@ get '/test' do
 end
 
 get '/update' do
+    f = [DateTime.now.year, DateTime.now.month, DateTime.now.day+1]
+if f != WeatherData.all.last.date
     daily_forecast("bristol")
     daily_forecast("cambridge")
     daily_forecast("london")
     erb :update_complete
+else
+    erb :update_not_required
+end
 end
 
 post'/' do
