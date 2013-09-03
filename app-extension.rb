@@ -23,22 +23,6 @@ end
 
 # Models
 
-#def update_required(current)
-#    url = "http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/capabilities?res=3hourly&key=0da4e1ea-8681-47bc-a5f9-5ab535ff75f2"
-#    resp = Net::HTTP.get_response(URI.parse(url))
-#    data = resp.body
-#    result = JSON.parse(data)
-#    most_recent_from_db = "#{WeatherData.first.date[0]}-#{WeatherData.first.date[1]}-#{WeatherData.first.date[2]}"
-#    most_recent_from_met = result["Resource"]["dataDate"].chop[0..9]
-#    if  most_recent_from_db != most_recent_from_met
-#        daily_forecast
-#    end
-#    #if result.has_key? 'Error'
-#    #    raise "web service error"
-#    #end
-#    return result
-#end
-
 def location_id
     {   :bristol => 310004,
         :cambridge => 310042,
@@ -96,13 +80,43 @@ def compare (x,y)
     end
 end
 
-def get_word(average)
+def get_word_temperature(average)
     if average > 0
         word = "hotter than"
     elsif average    < 0 
         word = "colder than"
     else 
-        word = "about the same as"
+        word = "about the same temperature as"
+    end
+end
+
+def get_word_rainfall(average)
+    if average > 0
+        word = "wetter than"
+    elsif average    < 0 
+        word = "drier than"
+    else 
+        word = "as rainy as"
+    end
+end
+
+def get_word_cloud(average)
+    if average > 0
+        word = "cloudier than"
+    elsif average    < 0 
+        word = "clearer than"
+    else 
+        word = "as cloudy as"
+    end
+end
+
+def get_word_wind(average)
+    if average > 0
+        word = "windier than"
+    elsif average    < 0 
+        word = "less windy than"
+    else 
+        word = "as windy as"
     end
 end
 
@@ -150,10 +164,39 @@ def compare_the_temperature
     @temp_tomorrow = @day_after.temperature
     c = combination.reduce(0) {|acc,h| acc += compare(h[0],h[1])}
     puts c
-    @h_or_c = get_word(c)
-    puts @h_or_c
+    @comparison_phrase = get_word_temperature(c)
+    puts @comparison_phrase
 end
 
+def compare_the_rainfall
+    combination = @day_before.rainfall.zip(@day_after.rainfall)
+    @temp_today = @day_before.rainfall
+    @temp_tomorrow = @day_after.rainfall
+    c = combination.reduce(0) {|acc,h| acc += compare(h[0],h[1])}
+    puts c
+    @comparison_phrase = get_word_rainfall(c)
+    puts @comparison_phrase
+end
+
+def compare_the_cloud
+    combination = @day_before.cloud.zip(@day_after.cloud)
+    @temp_today = @day_before.cloud
+    @temp_tomorrow = @day_after.cloud
+    c = combination.reduce(0) {|acc,h| acc += compare(h[0],h[1])}
+    puts c
+    @comparison_phrase = get_word_cloud(c)
+    puts @comparison_phrase
+end
+
+def compare_the_wind
+    combination = @day_before.wind.zip(@day_after.wind)
+    @temp_today = @day_before.wind
+    @temp_tomorrow = @day_after.wind
+    c = combination.reduce(0) {|acc,h| acc += compare(h[0],h[1])}
+    puts c
+    @comparison_phrase = get_word_wind(c)
+    puts @comparison_phrase
+end
 
 def update_weather(location)
     #convert location into location ID for the URL
@@ -167,7 +210,7 @@ end
 
 #Controllers
 get '/' do
-    erb :home
+    erb :home_extension
 end
 
 get '/test' do
@@ -190,7 +233,17 @@ post'/' do
     @location = params[:location].downcase
     @when_for = params[:when_for].downcase
     filter_time_location(@location, @when_for)
-    compare_the_temperature
-    erb :results
+    if params[:submit] == "temperature-button"
+        compare_the_temperature
+    elsif params[:submit] == "rainfall-button"
+        compare_the_rainfall
+    elsif params[:submit] == "cloud-button"
+        compare_the_cloud
+    elsif params[:submit] == "wind-button"
+        compare_the_wind
+    else @comparison_phrase = "test"
+    end
+    erb :results_general
 end
+
 

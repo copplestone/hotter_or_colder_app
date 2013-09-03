@@ -7,11 +7,35 @@
     font-size: 18px;
 }
 
-.main_button {
-    padding-left: 30px;
-    padding-right: 30px;
+#hotter{
+    padding-left: 19px;
+    padding-right: 19px;
 }
 
+#rain{
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: #3333CC;
+    border-color: #3333CC;
+}
+
+#wind{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#cloud{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#when{
+    padding-left: 5px;
+}
+
+#location{
+    padding-left: 15px;
+}
 
 .dropdown{
     width: 25%;
@@ -24,4 +48,16 @@
 .logo{
     width: 15%;
     height: 15%;
+}
+
+.box_image{
+    margin-bottom: 70px;
+    margin-top: 70px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+.table-box{
+   padding-bottom: 5px; 
 }
