@@ -51,8 +51,16 @@
 }
 
 .box_image{
-    margin-bottom: 70px;
-    margin-top: 70px;
+    margin-bottom: 80px;
+    margin-top: 80px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+.box_image_form{
+    margin-bottom: 90px;
+    margin-top: 90px;
     margin-left: 10px;
     margin-right: 10px;
 
@@ -60,4 +68,20 @@
 
 .table-box{
    padding-bottom: 5px; 
+}
+
+.red_button{
+    background-color: #97310e;
+    border-color: #97310e;
+    color: white;
+    margin-left: 130px;
+}
+
+.red_button_label{
+    margin-bottom: 7px;
+    font-size: 20px;
+}
+
+.form-control{
+    width: 290px;
 }

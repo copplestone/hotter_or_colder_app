@@ -229,14 +229,6 @@ else
 end
 end
 
-get '/form' do
-    erb :form
-end
-
-get '/thanks' do
-    erb :thanks
-end
-
 post'/' do
     @location = params[:location].downcase
     @when_for = params[:when_for].downcase
@@ -253,8 +245,5 @@ post'/' do
     end
     erb :results_general
 end
-
-
-
 
 
