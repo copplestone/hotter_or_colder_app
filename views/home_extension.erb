@@ -22,20 +22,22 @@
 </head>
 
 <body>
-<div class="container marketing">
+<div class="container marketing  pagination-centered">
     <br><br><br>
     <div class="featurette">
         <div class="row">
 
-          <img class="featurette-image img-circle pull-right box_image" data-src="holder.js/270x270" alt="270x270" style="width: 270px;" src="/colder1.jpg">
+          <img class="featurette-image img-circle pull-right box_image_right" data-src="holder.js/200x200" alt="200x200" style="width: 200px;" src="/colder1.jpg">
         
         
-          <img class="featurette-image img-circle pull-left box_image" data-src="holder.js/270x270" alt="270x270" style="width: 270px;" src="/hotter1.jpg">
+          <img class="featurette-image img-circle pull-left box_image_left" data-src="holder.js/200x200" alt="200x200" style="width: 200px;" src="/hotter1.jpg">
 
           <!--<div class="box">-->
             <h1 class="featurette-heading">A weather forecast
             <span class="text-muted">you can feel.</span></h1>
             <br>
+
+            <div class = " pagination-centered">
             <form method='post' class="form-inline">
             
               <div id="location">
@@ -57,23 +59,22 @@
                 </select>
               </div>
                     <br><br>
-                <table class="table-box">
-                  <tr>
-                    <td><button type="button submit" name="submit" value="temperature-button" class="btn btn-warning dropdown_font" id="hotter">    Hotter or colder?</button></td>
+                <!--<table class="table-box">
+                  <tr>-->
+                    <button type="button submit" name="submit" value="temperature-button" class="btn btn-warning dropdown_font" id="hotter">    Hotter or colder?</button>
                                    
-                    <td><button type="button submit" name="submit" value="rainfall-button" class="btn btn-info dropdown_font" id="rain">   Wetter or drier?</button></td>
+                    <!--<td><button type="button submit" name="submit" value="rainfall-button" class="btn btn-info dropdown_font" id="rain">   Wetter or drier?</button></td>
                   </tr>
                                    
                   <tr>
                     <td><button type="button submit" name="submit" value="cloud-button" class="btn btn-default dropdown_font" id="cloud">    Cloudier or clearer?</button></td>
                                    
-                    <td><button type="button submit" name="submit" value="wind-button" class="btn btn-success dropdown_font" id="wind">    Windier or stiller?</button></td>
-                  <tr>
-                 </table> 
+                    <td><button type="button submit" name="submit" value="wind-button" class="btn btn-success dropdown_font" id="wind">    Windier or stiller?</button></td>-->
+                  <!--<tr>
+                 </table> -->
                 </form>
-
-                <legend class="text-right red_button_label">We're running a free coding taster session in Cambridge on 12 Nov 2013</legend>
-                <a href="https://docs.google.com/forms/d/1FhjAvK81yr5ISZybdfTUnigzErc2QhWAFi3lKQCPMYc/viewform" class="btn button pull-right red_button dropdown_font">Sign up here</a>
+              </div>
+                
 
                 <!--<legend class="text-right red_button_label">Want this for your city too?</legend>
                 <a href="/form" class="btn button pull-right red_button dropdown_font">    Add my city</a>-->

@@ -1,3 +1,5 @@
+.pagination-centered{text-align:center;}
+
 .box {
     margin-left: 10px;
     margin-right: 10px;
@@ -8,8 +10,8 @@
 }
 
 #hotter{
-    padding-left: 19px;
-    padding-right: 19px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 #rain{
@@ -50,12 +52,19 @@
     height: 15%;
 }
 
-.box_image{
+.box_image_right{
     margin-bottom: 80px;
     margin-top: 80px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 0px;
+    margin-right: 170px;
 
+}
+
+.box_image_left{ 
+    margin-bottom: 80px;
+    margin-top: 80px;
+    margin-left: 170px;
+    margin-right: 0px;
 }
 
 .box_image_form{
