@@ -208,6 +208,44 @@ def update_weather(location)
     #for today and return hotter, colder or exactly the same.
 end
 
+def correct_date_check
+        if DateTime.now.day = 1
+            correct_date
+        else
+        end
+end
+
+def correct_date
+        #Redo the @day_before to equal the last day of the previous month
+        if DateTime.now.month == 1
+            @day_before = [@day_before[0],12,31]
+        elsif DateTime.now.month == 2
+            @day_before = [@day_before[0],1,31]
+        elsif DateTime.now.month == 3
+            @day_before = [@day_before[0],2,28]
+        elsif DateTime.now.month == 4
+            @day_before = [@day_before[0],3,31]
+        elsif DateTime.now.month == 5
+            @day_before = [@day_before[0],4,30]
+        elsif DateTime.now.month == 6
+            @day_before = [@day_before[0],5,31]
+        elsif DateTime.now.month == 7
+            @day_before = [@day_before[0],6,30]
+        elsif DateTime.now.month == 8
+            @day_before = [@day_before[0],7,31]
+        elsif DateTime.now.month == 9
+            @day_before = [@day_before[0],8,31]
+        elsif DateTime.now.month == 10
+            @day_before = [@day_before[0],9,30]
+        elsif DateTime.now.month == 11
+            @day_before = [@day_before[0],10,31]
+        elsif DateTime.now.month == 12
+            @day_before = [@day_before[0],11,30]
+        else
+        end
+    return
+end
+
 #Controllers
 get '/' do
     erb :home_extension
