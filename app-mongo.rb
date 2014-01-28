@@ -249,6 +249,8 @@ def correct_date
             @day_before = [@day_before[0],11,30]
         else
         end
+    return
+end
 
 
 #Controllers
