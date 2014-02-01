@@ -209,7 +209,7 @@ def update_weather(location)
 end
 
 def correct_date_check
-        if DateTime.now.day = 1
+        if DateTime.now.day == 1
             correct_date
         else
         end

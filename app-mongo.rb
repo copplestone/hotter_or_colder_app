@@ -205,6 +205,7 @@ def compare_the_wind
 end
 
 def update_weather(location)
+    #NOT USED ANY MORE
     #convert location into location ID for the URL
     url = "http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/[LocationID]?res=3hourly&key=0da4e1ea-8681-47bc-a5f9-5ab535ff75f2"
     resp = Net::HTTP.get_response(URI.parse(url))
