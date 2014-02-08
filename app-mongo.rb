@@ -223,6 +223,7 @@ def correct_date_check
     return "Got through correct_date_check"
 end
 
+#Date.today.next_day
 def correct_date
         #Redo the @day_before to equal the last day of the previous month
         if DateTime.now.month == 1
