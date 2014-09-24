@@ -4,7 +4,7 @@ require 'json'
 require 'mongoid'
 require 'date'
 
-Mongoid.load!("mongoid.yml")
+# Mongoid.load!("mongoid.yml")
 # The :development bit refers to our environment - 
 # you will probably want to have different configuration 
 # options when you’re deploying your app to heroku; mongoid 
@@ -61,7 +61,7 @@ def daily_forecast(location)
     end
 
     tomorrow = WeatherData.new 
-        tomorrow.date = [DateTime.now.year, DateTime.now.month, DateTime.now.day+1]
+        tomorrow.date = [Date.today.next_day.year, Date.today.next_day.month, Date.today.next_day.day]
         tomorrow.location = location
         tomorrow.temperature = @temp_tomorrow
         tomorrow.rainfall = @rain_tomorrow
@@ -122,42 +122,36 @@ end
 
 def filter_time_location(location, when_for)
     if location == "bristol" && when_for == "today"
-        @day_before = WeatherData.find_by(:date => [DateTime.now.year, DateTime.now.month, DateTime.now.day-1], :location => "bristol")
-        @day_after = WeatherData.find_by(:date => [DateTime.now.year, DateTime.now.month, DateTime.now.day], :location => "bristol")
-        correct_date_check
+        @day_before = WeatherData.find_by(:date => [(Date.today-1).year, (Date.today-1).month, (Date.today-1).day], :location => "bristol")
+        @day_after = WeatherData.find_by(:date => [Date.today.year, Date.today.month, Date.today.day], :location => "bristol")
         @word_one = "Today"
         @word_two = "yesterday"
     elsif location == "bristol" && when_for == "tomorrow"
-        @day_before = WeatherData.find_by(:date => [DateTime.now.year, DateTime.now.month, DateTime.now.day], :location => "bristol")
-        @day_after = WeatherData.find_by(:date => [DateTime.now.year, DateTime.now.month, DateTime.now.day+1], :location => "bristol")
-        correct_date_check
+        @day_before = WeatherData.find_by(:date => [Date.today.year, Date.today.month, Date.today.day], :location => "bristol")
+        @day_after = WeatherData.find_by(:date => [Date.today.next_day.year, Date.today.next_day.month, Date.today.next_day.day], :location => "bristol")
         @word_one = "Tomorrow"
         @word_two = "today"
     elsif location == "cambridge" && when_for == "today"
-        @day_before = WeatherData.find_by(:date => [DateTime.now.year, DateTime.now.month, DateTime.now.day-1], :location => "cambridge")
-        @day_after = WeatherData.find_by(:date => [DateTime.now.year, DateTime.now.month, DateTime.now.day], :location => "cambridge")
-        correct_date_check
+        @day_before = WeatherData.find_by(:date => [(Date.today-1).year, (Date.today-1).month, (Date.today-1).day], :location => "cambridge")
+        @day_after = WeatherData.find_by(:date => [Date.today.year, Date.today.month, Date.today.day], :location => "cambridge")
         @word_one = "Today"
         @word_two = "yesterday"
     elsif location == "cambridge" && when_for == "tomorrow"
-        @day_before = WeatherData.find_by(:date => [DateTime.now.year, DateTime.now.month, DateTime.now.day], :location => "cambridge")
-        @day_after = WeatherData.find_by(:date => [DateTime.now.year, DateTime.now.month, DateTime.now.day+1], :location => "cambridge")
-        correct_date_check
+        @day_before = WeatherData.find_by(:date => [Date.today.year, Date.today.month, Date.today.day], :location => "cambridge")
+        @day_after = WeatherData.find_by(:date => [Date.today.next_day.year, Date.today.next_day.month, Date.today.next_day.day], :location => "cambridge")
         @word_one = "Tomorrow"
         @word_two = "today"
     elsif location == "london" && when_for == "today"
-        @day_before = WeatherData.find_by(:date => [DateTime.now.year, DateTime.now.month, DateTime.now.day-1], :location => "london")
-        @day_after = WeatherData.find_by(:date => [DateTime.now.year, DateTime.now.month, DateTime.now.day], :location => "london")
-        correct_date_check
+        @day_before = WeatherData.find_by(:date => [(Date.today-1).year, (Date.today-1).month, (Date.today-1).day], :location => "london")
+        @day_after = WeatherData.find_by(:date => [Date.today.year, Date.today.month, Date.today.day], :location => "london")
         @word_one = "Today"
         @word_two = "yesterday"
     elsif location == "london" && when_for == "tomorrow"
-        @day_before = WeatherData.find_by(:date => [DateTime.now.year, DateTime.now.month, DateTime.now.day], :location => "london")
-        @day_after = WeatherData.find_by(:date => [DateTime.now.year, DateTime.now.month, DateTime.now.day+1], :location => "london")
-        correct_date_check
+        @day_before = WeatherData.find_by(:date => [Date.today.year, Date.today.month, Date.today.day], :location => "london")
+        @day_after = WeatherData.find_by(:date => [Date.today.next_day.year, Date.today.next_day.month, Date.today.next_day.day], :location => "london")
         @word_one = "Tomorrow"
         @word_two = "today"
-    else
+    else [Date.today.year, Date.today.month, Date.today.day]
         puts "Haven't found data to compare"
     end
     return 
@@ -215,46 +209,6 @@ def update_weather(location)
     #for today and return hotter, colder or exactly the same.
 end
 
-def correct_date_check
-        if DateTime.now.day == 1
-            correct_date
-        else
-        end
-    return "Got through correct_date_check"
-end
-
-#Date.today.next_day
-def correct_date
-        #Redo the @day_before to equal the last day of the previous month
-        if DateTime.now.month == 1
-            @day_before = [@day_before[0],12,31]
-        elsif DateTime.now.month == 2
-            @day_before = [@day_before[0],1,31]
-        elsif DateTime.now.month == 3
-            @day_before = [@day_before[0],2,28]
-        elsif DateTime.now.month == 4
-            @day_before = [@day_before[0],3,31]
-        elsif DateTime.now.month == 5
-            @day_before = [@day_before[0],4,30]
-        elsif DateTime.now.month == 6
-            @day_before = [@day_before[0],5,31]
-        elsif DateTime.now.month == 7
-            @day_before = [@day_before[0],6,30]
-        elsif DateTime.now.month == 8
-            @day_before = [@day_before[0],7,31]
-        elsif DateTime.now.month == 9
-            @day_before = [@day_before[0],8,31]
-        elsif DateTime.now.month == 10
-            @day_before = [@day_before[0],9,30]
-        elsif DateTime.now.month == 11
-            @day_before = [@day_before[0],10,31]
-        elsif DateTime.now.month == 12
-            @day_before = [@day_before[0],11,30]
-        else
-        end
-    return
-end
-
 
 #Controllers
 get '/' do
@@ -266,7 +220,7 @@ get '/test' do
 end
 
 get '/update' do
-    f = [DateTime.now.year, DateTime.now.month, DateTime.now.day+1]
+    f = [Date.today.next_day.year, Date.today.next_day.month, Date.today.next_day.day]
 if f != WeatherData.all.last.date
     daily_forecast("bristol")
     daily_forecast("cambridge")
