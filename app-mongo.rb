@@ -4,7 +4,7 @@ require 'json'
 require 'mongoid'
 require 'date'
 
-# Mongoid.load!("mongoid.yml")
+Mongoid.load!("mongoid.yml")
 # The :development bit refers to our environment - 
 # you will probably want to have different configuration 
 # options when you’re deploying your app to heroku; mongoid 
